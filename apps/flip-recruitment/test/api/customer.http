@@ -1,0 +1,30 @@
+@host = http://localhost:3000
+# @host = https://api.pitbot.fun
+// get
+POST {{host}}/customer HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Bożena Hart"
+}
+
+###
+
+PATCH  {{host}}/customer/2d95e08b-a7fe-4808-9a94-62df0dcc965c HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Bożena Wasserman"
+}
+
+###
+
+// get
+GET {{host}}/order HTTP/1.1
+
+
+"40-645"
+
+###
+
+GET  {{host}}/customer/2d95e08b-a7fe-4808-9a94-62df0dcc965c HTTP/1.1

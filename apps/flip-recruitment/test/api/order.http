@@ -1,0 +1,17 @@
+@host = http://localhost:3000
+# @host = https://api.pitbot.fun
+// get
+POST {{host}}/order HTTP/1.1
+content-type: application/json
+
+{
+  "postal_code": "54-129"
+}
+
+###
+
+// get
+GET {{host}}/order HTTP/1.1
+x-auth-token: aa6eefe454bdd0d45c3be53fec20c605cefdcfbef434e61419e12ee8114e1d9a
+
+"40-645"

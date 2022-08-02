@@ -1,0 +1,18 @@
+@host = http://localhost:3001
+# @host = https://api.pitbot.fun
+// get
+POST {{host}}/order HTTP/1.1
+content-type: application/json
+
+{
+  "customerId": "0abbe4c0-db0f-4408-a60e-f8cd20fc2e74",
+  "items": [{ "quantity": 3, "productId": "e0e5e60f-8f6f-4e23-a18f-4b728a65314c" }]
+}
+
+###
+
+// get
+GET {{host}}/topProfitable HTTP/1.1
+x-auth-token: aa6eefe454bdd0d45c3be53fec20c605cefdcfbef434e61419e12ee8114e1d9a
+
+"40-645"

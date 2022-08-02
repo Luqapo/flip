@@ -1,0 +1,28 @@
+@host = http://localhost:3000
+# @host = https://api.pitbot.fun
+// get
+POST {{host}}/product HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Intelligent Fresh Tuna",
+  "price": "25.00"
+}
+
+###
+
+PATCH  {{host}}/product/2d95e08b-a7fe-4808-9a94-62df0dcc965c HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Intelligent Fresh Tuna",
+  "price": "22.00"
+}
+
+###
+
+GET  {{host}}/product/693d2073-7e3e-494d-8266-9cfc2b798d65 HTTP/1.1
+
+###
+
+GET  {{host}}/product HTTP/1.1

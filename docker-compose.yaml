@@ -1,0 +1,42 @@
+version: '3.9'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=flip_recruit
+      - POSTGRES_PASSWORD=flip_recruit
+      - POSTGRES_DB=flip_recruit
+    networks:
+      my_network:
+        ipv4_address: 172.21.0.5
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=second_nr@2nr.com
+      - PGADMIN_DEFAULT_PASSWORD=second_nr
+    networks:
+      my_network:
+        ipv4_address: 172.21.0.4
+
+networks:
+  my_network:
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+
+

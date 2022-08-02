@@ -1,0 +1,19 @@
+{
+  "apps": [
+    {
+      "script": "nest",
+      "name": "flip",
+      "args": [
+        "start"
+      ]
+    },
+    {
+      "script": "nest",
+      "name": "order-worker",
+      "args": [
+        "start",
+        "order-worker"
+      ]
+    }
+  ]
+}

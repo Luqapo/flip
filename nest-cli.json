@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/flip-recruitment/src",
+  "monorepo": true,
+  "root": "apps/flip-recruitment",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/flip-recruitment/tsconfig.app.json"
+  },
+  "projects": {
+    "flip-recruitment": {
+      "type": "application",
+      "root": "apps/flip-recruitment",
+      "entryFile": "main",
+      "sourceRoot": "apps/flip-recruitment/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/flip-recruitment/tsconfig.app.json"
+      }
+    },
+    "order-worker": {
+      "type": "application",
+      "root": "apps/order-worker",
+      "entryFile": "main",
+      "sourceRoot": "apps/order-worker/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/order-worker/tsconfig.app.json"
+      }
+    }
+  }
+}
