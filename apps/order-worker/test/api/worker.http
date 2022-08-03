@@ -15,4 +15,14 @@ content-type: application/json
 GET {{host}}/topProfitable HTTP/1.1
 x-auth-token: aa6eefe454bdd0d45c3be53fec20c605cefdcfbef434e61419e12ee8114e1d9a
 
-"40-645"
+###
+
+// get
+GET {{host}}/mostOftenBought HTTP/1.1
+x-auth-token: aa6eefe454bdd0d45c3be53fec20c605cefdcfbef434e61419e12ee8114e1d9a
+
+###
+
+// get
+GET {{host}}/mostOftenBoughtYesterday HTTP/1.1
+x-auth-token: aa6eefe454bdd0d45c3be53fec20c605cefdcfbef434e61419e12ee8114e1d9a

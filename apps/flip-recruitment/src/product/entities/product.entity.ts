@@ -38,6 +38,6 @@ export class ProductSubscriber implements EntitySubscriberInterface<Product> {
    * Called after Product insertion.
    */
   afterUpdate(event: UpdateEvent<Product>) {
-    event.manager.query('REFRESH MATERIALIZED VIEW item_profit_view');
+    event.manager.query('REFRESH MATERIALIZED VIEW past_item_profit_view');
   }
 }

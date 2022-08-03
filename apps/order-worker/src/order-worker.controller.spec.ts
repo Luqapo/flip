@@ -8,8 +8,7 @@ import { configService } from './config/config.service';
 import { OrderView } from './entities/orderView.entity';
 import { ScheduleModule } from '@nestjs/schedule';
 import { MostOftenBoughtYesterdayView } from './entities/mostOftenYesterday';
-import { MostOftenBoughtView } from './entities/mostOften';
-import { ItemProfitView } from './entities/itemProfitView';
+import { PastItemProfitView } from './entities/itemProfitView';
 
 describe('OrderWorkerController', () => {
   let orderWorkerController: OrderWorkerController;
@@ -21,8 +20,7 @@ describe('OrderWorkerController', () => {
         ConfigModule.forRoot(),
         TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
         TypeOrmModule.forFeature([OrderView]),
-        TypeOrmModule.forFeature([ItemProfitView]),
-        TypeOrmModule.forFeature([MostOftenBoughtView]),
+        TypeOrmModule.forFeature([PastItemProfitView]),
         TypeOrmModule.forFeature([MostOftenBoughtYesterdayView]),
         ScheduleModule.forRoot(),
       ],

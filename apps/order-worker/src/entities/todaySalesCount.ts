@@ -11,7 +11,6 @@ import { ViewEntity, ViewColumn } from 'typeorm';
       WHERE o.date::date = now()::date) today_sales
     GROUP BY "productId"
   `,
-  materialized: true,
 })
 export class TodaySalesCountView {
   @ViewColumn()

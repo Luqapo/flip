@@ -5,7 +5,8 @@ POST {{host}}/order HTTP/1.1
 content-type: application/json
 
 {
-  "postal_code": "54-129"
+  "customerId": "fcf1b5f5-b719-4925-b2ae-c1cf7fc230b3",
+  "items": [{ "quantity": 3, "productId": "b3370d69-ff33-455f-9fdb-73c198548e03" }]
 }
 
 ###

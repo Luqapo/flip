@@ -42,8 +42,7 @@ export class OrderSubscriber implements EntitySubscriberInterface<Order> {
    * Called after order insertion.
    */
   afterInsert(event: InsertEvent<Order>) {
-    event.manager.query('REFRESH MATERIALIZED VIEW today_sales_count');
     event.manager.query('REFRESH MATERIALIZED VIEW order_view');
-    event.manager.query('REFRESH MATERIALIZED VIEW item_profit_view');
+    event.manager.query('REFRESH MATERIALIZED VIEW past_item_profit_view');
   }
 }

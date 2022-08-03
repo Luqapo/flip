@@ -3,7 +3,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderView } from './entities/orderView.entity';
-import { ItemProfitView } from './entities/itemProfitView';
+import { PastItemProfitView } from './entities/itemProfitView';
 import { MostOftenBoughtYesterdayView } from './entities/mostOftenYesterday';
 import { Cron } from '@nestjs/schedule';
 
@@ -11,8 +11,8 @@ import { Cron } from '@nestjs/schedule';
 export class OrderWorkerService {
   constructor(
     private readonly httpService: HttpService,
-    @InjectRepository(ItemProfitView)
-    private itemProfitView: Repository<ItemProfitView>,
+    @InjectRepository(PastItemProfitView)
+    private itemProfitView: Repository<PastItemProfitView>,
     @InjectRepository(OrderView)
     private orderView: Repository<OrderView>,
     @InjectRepository(MostOftenBoughtYesterdayView)
@@ -20,14 +20,14 @@ export class OrderWorkerService {
   ) {}
   private readonly logger = new Logger(OrderWorkerService.name);
 
-  @Cron('1 0 * * * *')
+  @Cron('1 0 0 * * *') // TODO: every mindnight
   handleCron() {
     this.logger.debug('Called when the current second is 45');
     this.mostBoughtYesterdayView.query(
       'REFRESH MATERIALIZED VIEW most_bought_yesterday_view',
     );
     this.mostBoughtYesterdayView.query(
-      'REFRESH MATERIALIZED VIEW item_profit_view',
+      'REFRESH MATERIALIZED VIEW past_item_profit_view',
     );
     this.mostBoughtYesterdayView.query(
       'REFRESH MATERIALIZED VIEW past_sales_count',
@@ -41,19 +41,9 @@ export class OrderWorkerService {
   async getTopProfitable(): Promise<any> {
     const data = await this.itemProfitView.query(`
       SELECT "productId", SUM(sales_value)
-      FROM (SELECT * FROM item_profit_view
+      FROM (SELECT * FROM past_item_profit_view
       UNION
-      SELECT "productId", SUM(value) as sales_value FROM (
-        SELECT "productId", quantity * price::numeric as value
-          FROM (
-            SELECT "productId", quantity, price
-            FROM item i
-            LEFT JOIN product p ON p.id = i."productId"
-            LEFT JOIN "order" o ON o.id = i."orderId"
-            WHERE o.date::date = now()::date
-          ) item_price
-      ) item_value
-      GROUP BY "productId") sum
+      SELECT * FROM today_item_profit_view) sum
       GROUP BY "productId"
       ORDER BY SUM(sales_value) DESC
       LIMIT 10

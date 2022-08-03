@@ -6,7 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configService } from './config/config.service';
 import { OrderView } from './entities/orderView.entity';
-import { ItemProfitView } from './entities/itemProfitView';
+import { PastItemProfitView } from './entities/itemProfitView';
 import { ScheduleModule } from '@nestjs/schedule';
 import { MostOftenBoughtYesterdayView } from './entities/mostOftenYesterday';
 
@@ -16,7 +16,7 @@ import { MostOftenBoughtYesterdayView } from './entities/mostOftenYesterday';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
     TypeOrmModule.forFeature([OrderView]),
-    TypeOrmModule.forFeature([ItemProfitView]),
+    TypeOrmModule.forFeature([PastItemProfitView]),
     TypeOrmModule.forFeature([MostOftenBoughtYesterdayView]),
     ScheduleModule.forRoot(),
   ],
